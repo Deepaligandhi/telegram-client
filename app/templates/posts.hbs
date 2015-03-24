@@ -1,8 +1,10 @@
 <p>Latest posts :
-	<br>
+	<br/>
 	{{#each post in controller}}
-  	{{post.ownedBy.userName}}: {{post.body}} <br/>
-{{/each}}
+  		{{#link-to "profile" post.ownedBy}}{{post.ownedBy.userName}}{{/link-to}}: {{post.body}} <br/>
+	{{/each}}
+	<br/>
+{{#link-to "home"}}Home{{/link-to}}
 
 </p>
 

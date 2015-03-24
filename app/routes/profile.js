@@ -1,4 +1,9 @@
 import Ember from 'ember';
 
-export default Ember.Route.extend({
+var ProfileIndexRoute = Ember.Route.extend({
+	model: function(params){
+		return this.store.find("post", {ownedBy: params.user_id});
+	}
 });
+
+export default ProfileIndexRoute;

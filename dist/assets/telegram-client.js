@@ -139,7 +139,7 @@ define('telegram-client/router', ['exports', 'ember', 'telegram-client/config/en
 
 		this.route("posts", { path: "/posts" });
 
-		this.resource("profile", { path: "/:user_id" }, function () {
+		this.resource("profile", { path: "/profile/:user_id" }, function () {
 			this.route("posts", { path: "/" });
 			this.route("followers", { path: "/followers" });
 			this.route("followers", { path: "/following" });
@@ -212,7 +212,13 @@ define('telegram-client/routes/profile', ['exports', 'ember'], function (exports
 
 	'use strict';
 
-	exports['default'] = Ember['default'].Route.extend({});
+	var ProfileIndexRoute = Ember['default'].Route.extend({
+		model: function model(params) {
+			return this.store.find("post", { ownedBy: params.user_id });
+		}
+	});
+
+	exports['default'] = ProfileIndexRoute;
 
 });
 define('telegram-client/routes/profile/followers', ['exports', 'ember'], function (exports, Ember) {
@@ -326,13 +332,13 @@ define('telegram-client/templates/home', ['exports'], function (exports) {
         var el3 = dom.createTextNode("\n        ");
         dom.appendChild(el2, el3);
         var el3 = dom.createElement("h1");
-        var el4 = dom.createTextNode("telegram");
+        var el4 = dom.createTextNode("Hello!");
         dom.appendChild(el3, el4);
         dom.appendChild(el2, el3);
         var el3 = dom.createTextNode("\n    ");
         dom.appendChild(el2, el3);
         dom.appendChild(el1, el2);
-        var el2 = dom.createTextNode("\n    \n    ");
+        var el2 = dom.createTextNode("\n    ");
         dom.appendChild(el1, el2);
         var el2 = dom.createTextNode("\n");
         dom.appendChild(el1, el2);
@@ -340,9 +346,6 @@ define('telegram-client/templates/home', ['exports'], function (exports) {
         var el1 = dom.createTextNode("\n \n");
         dom.appendChild(el0, el1);
         var el1 = dom.createElement("footer");
-        dom.setAttribute(el1,"id","info");
-        var el2 = dom.createTextNode("\n    \n");
-        dom.appendChild(el1, el2);
         dom.appendChild(el0, el1);
         var el1 = dom.createTextNode("\n\n");
         dom.appendChild(el0, el1);
@@ -388,16 +391,11 @@ define('telegram-client/templates/home/index', ['exports'], function (exports) {
         cachedFragment: null,
         hasRendered: false,
         build: function build(dom) {
-          var el0 = dom.createDocumentFragment();
-          var el1 = dom.createTextNode("");
-          dom.appendChild(el0, el1);
-          var el1 = dom.createTextNode("'s profile page");
-          dom.appendChild(el0, el1);
+          var el0 = dom.createTextNode("All posts");
           return el0;
         },
         render: function render(context, env, contextualElement) {
           var dom = env.dom;
-          var hooks = env.hooks, content = hooks.content;
           dom.detectNamespace(contextualElement);
           var fragment;
           if (env.useFragmentCache && dom.canClone) {
@@ -415,50 +413,6 @@ define('telegram-client/templates/home/index', ['exports'], function (exports) {
           } else {
             fragment = this.build(dom);
           }
-          if (this.cachedFragment) { dom.repairClonedNode(fragment,[0]); }
-          var morph0 = dom.createMorphAt(fragment,0,1,contextualElement);
-          content(env, morph0, context, "userName");
-          return fragment;
-        }
-      };
-    }());
-    var child1 = (function() {
-      return {
-        isHTMLBars: true,
-        blockParams: 0,
-        cachedFragment: null,
-        hasRendered: false,
-        build: function build(dom) {
-          var el0 = dom.createDocumentFragment();
-          var el1 = dom.createTextNode("");
-          dom.appendChild(el0, el1);
-          var el1 = dom.createTextNode("'s posts page");
-          dom.appendChild(el0, el1);
-          return el0;
-        },
-        render: function render(context, env, contextualElement) {
-          var dom = env.dom;
-          var hooks = env.hooks, content = hooks.content;
-          dom.detectNamespace(contextualElement);
-          var fragment;
-          if (env.useFragmentCache && dom.canClone) {
-            if (this.cachedFragment === null) {
-              fragment = this.build(dom);
-              if (this.hasRendered) {
-                this.cachedFragment = fragment;
-              } else {
-                this.hasRendered = true;
-              }
-            }
-            if (this.cachedFragment) {
-              fragment = dom.cloneNode(this.cachedFragment, true);
-            }
-          } else {
-            fragment = this.build(dom);
-          }
-          if (this.cachedFragment) { dom.repairClonedNode(fragment,[0]); }
-          var morph0 = dom.createMorphAt(fragment,0,1,contextualElement);
-          content(env, morph0, context, "ownedBy");
           return fragment;
         }
       };
@@ -471,28 +425,16 @@ define('telegram-client/templates/home/index', ['exports'], function (exports) {
       build: function build(dom) {
         var el0 = dom.createDocumentFragment();
         var el1 = dom.createElement("p");
-        var el2 = dom.createTextNode("Go to ");
+        var el2 = dom.createTextNode("Welcome home...\n");
         dom.appendChild(el1, el2);
-        var el2 = dom.createTextNode(".");
+        var el2 = dom.createElement("br");
         dom.appendChild(el1, el2);
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("\n    ");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("br");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("\n    ");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("p");
-        var el2 = dom.createTextNode("Go to ");
+        var el2 = dom.createTextNode("\n");
         dom.appendChild(el1, el2);
-        var el2 = dom.createTextNode(".");
+        var el2 = dom.createTextNode("\n");
         dom.appendChild(el1, el2);
         dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("\n    ");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("br");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("\n\n");
+        var el1 = dom.createTextNode("\n");
         dom.appendChild(el0, el1);
         var el1 = dom.createTextNode("\n");
         dom.appendChild(el0, el1);
@@ -500,7 +442,7 @@ define('telegram-client/templates/home/index', ['exports'], function (exports) {
       },
       render: function render(context, env, contextualElement) {
         var dom = env.dom;
-        var hooks = env.hooks, get = hooks.get, block = hooks.block, content = hooks.content;
+        var hooks = env.hooks, block = hooks.block, content = hooks.content;
         dom.detectNamespace(contextualElement);
         var fragment;
         if (env.useFragmentCache && dom.canClone) {
@@ -518,12 +460,10 @@ define('telegram-client/templates/home/index', ['exports'], function (exports) {
         } else {
           fragment = this.build(dom);
         }
-        var morph0 = dom.createMorphAt(dom.childAt(fragment, [0]),0,1);
-        var morph1 = dom.createMorphAt(dom.childAt(fragment, [4]),0,1);
-        var morph2 = dom.createMorphAt(fragment,7,8,contextualElement);
-        block(env, morph0, context, "link-to", ["user", get(env, context, "model")], {}, child0, null);
-        block(env, morph1, context, "link-to", ["post", get(env, context, "model")], {}, child1, null);
-        content(env, morph2, context, "outlet");
+        var morph0 = dom.createMorphAt(dom.childAt(fragment, [0]),2,3);
+        var morph1 = dom.createMorphAt(fragment,1,2,contextualElement);
+        block(env, morph0, context, "link-to", ["posts"], {}, child0, null);
+        content(env, morph1, context, "outlet");
         return fragment;
       }
     };
@@ -630,6 +570,47 @@ define('telegram-client/templates/posts', ['exports'], function (exports) {
 
   exports['default'] = Ember.HTMLBars.template((function() {
     var child0 = (function() {
+      var child0 = (function() {
+        return {
+          isHTMLBars: true,
+          blockParams: 0,
+          cachedFragment: null,
+          hasRendered: false,
+          build: function build(dom) {
+            var el0 = dom.createDocumentFragment();
+            var el1 = dom.createTextNode("");
+            dom.appendChild(el0, el1);
+            var el1 = dom.createTextNode("");
+            dom.appendChild(el0, el1);
+            return el0;
+          },
+          render: function render(context, env, contextualElement) {
+            var dom = env.dom;
+            var hooks = env.hooks, content = hooks.content;
+            dom.detectNamespace(contextualElement);
+            var fragment;
+            if (env.useFragmentCache && dom.canClone) {
+              if (this.cachedFragment === null) {
+                fragment = this.build(dom);
+                if (this.hasRendered) {
+                  this.cachedFragment = fragment;
+                } else {
+                  this.hasRendered = true;
+                }
+              }
+              if (this.cachedFragment) {
+                fragment = dom.cloneNode(this.cachedFragment, true);
+              }
+            } else {
+              fragment = this.build(dom);
+            }
+            if (this.cachedFragment) { dom.repairClonedNode(fragment,[0,1]); }
+            var morph0 = dom.createMorphAt(fragment,0,1,contextualElement);
+            content(env, morph0, context, "post.ownedBy.userName");
+            return fragment;
+          }
+        };
+      }());
       return {
         isHTMLBars: true,
         blockParams: 0,
@@ -637,7 +618,7 @@ define('telegram-client/templates/posts', ['exports'], function (exports) {
         hasRendered: false,
         build: function build(dom) {
           var el0 = dom.createDocumentFragment();
-          var el1 = dom.createTextNode("  	");
+          var el1 = dom.createTextNode("  		");
           dom.appendChild(el0, el1);
           var el1 = dom.createTextNode(": ");
           dom.appendChild(el0, el1);
@@ -651,7 +632,7 @@ define('telegram-client/templates/posts', ['exports'], function (exports) {
         },
         render: function render(context, env, contextualElement) {
           var dom = env.dom;
-          var hooks = env.hooks, content = hooks.content;
+          var hooks = env.hooks, get = hooks.get, block = hooks.block, content = hooks.content;
           dom.detectNamespace(contextualElement);
           var fragment;
           if (env.useFragmentCache && dom.canClone) {
@@ -671,8 +652,41 @@ define('telegram-client/templates/posts', ['exports'], function (exports) {
           }
           var morph0 = dom.createMorphAt(fragment,0,1,contextualElement);
           var morph1 = dom.createMorphAt(fragment,1,2,contextualElement);
-          content(env, morph0, context, "post.ownedBy.userName");
+          block(env, morph0, context, "link-to", ["profile", get(env, context, "post.ownedBy")], {}, child0, null);
           content(env, morph1, context, "post.body");
+          return fragment;
+        }
+      };
+    }());
+    var child1 = (function() {
+      return {
+        isHTMLBars: true,
+        blockParams: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        build: function build(dom) {
+          var el0 = dom.createTextNode("Home");
+          return el0;
+        },
+        render: function render(context, env, contextualElement) {
+          var dom = env.dom;
+          dom.detectNamespace(contextualElement);
+          var fragment;
+          if (env.useFragmentCache && dom.canClone) {
+            if (this.cachedFragment === null) {
+              fragment = this.build(dom);
+              if (this.hasRendered) {
+                this.cachedFragment = fragment;
+              } else {
+                this.hasRendered = true;
+              }
+            }
+            if (this.cachedFragment) {
+              fragment = dom.cloneNode(this.cachedFragment, true);
+            }
+          } else {
+            fragment = this.build(dom);
+          }
           return fragment;
         }
       };
@@ -691,7 +705,13 @@ define('telegram-client/templates/posts', ['exports'], function (exports) {
         dom.appendChild(el1, el2);
         var el2 = dom.createTextNode("\n");
         dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("	");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("br");
+        dom.appendChild(el1, el2);
         var el2 = dom.createTextNode("\n");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n\n");
         dom.appendChild(el1, el2);
         dom.appendChild(el0, el1);
         var el1 = dom.createTextNode("\n\n\n");
@@ -720,10 +740,13 @@ define('telegram-client/templates/posts', ['exports'], function (exports) {
         } else {
           fragment = this.build(dom);
         }
-        var morph0 = dom.createMorphAt(dom.childAt(fragment, [0]),2,3);
-        var morph1 = dom.createMorphAt(fragment,1,2,contextualElement);
+        var element0 = dom.childAt(fragment, [0]);
+        var morph0 = dom.createMorphAt(element0,2,3);
+        var morph1 = dom.createMorphAt(element0,5,6);
+        var morph2 = dom.createMorphAt(fragment,1,2,contextualElement);
         block(env, morph0, context, "each", [get(env, context, "controller")], {"keyword": "post"}, child0, null);
-        content(env, morph1, context, "outlet");
+        block(env, morph1, context, "link-to", ["home"], {}, child1, null);
+        content(env, morph2, context, "outlet");
         return fragment;
       }
     };
@@ -735,6 +758,72 @@ define('telegram-client/templates/profile', ['exports'], function (exports) {
   'use strict';
 
   exports['default'] = Ember.HTMLBars.template((function() {
+    var child0 = (function() {
+      return {
+        isHTMLBars: true,
+        blockParams: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        build: function build(dom) {
+          var el0 = dom.createTextNode("Home");
+          return el0;
+        },
+        render: function render(context, env, contextualElement) {
+          var dom = env.dom;
+          dom.detectNamespace(contextualElement);
+          var fragment;
+          if (env.useFragmentCache && dom.canClone) {
+            if (this.cachedFragment === null) {
+              fragment = this.build(dom);
+              if (this.hasRendered) {
+                this.cachedFragment = fragment;
+              } else {
+                this.hasRendered = true;
+              }
+            }
+            if (this.cachedFragment) {
+              fragment = dom.cloneNode(this.cachedFragment, true);
+            }
+          } else {
+            fragment = this.build(dom);
+          }
+          return fragment;
+        }
+      };
+    }());
+    var child1 = (function() {
+      return {
+        isHTMLBars: true,
+        blockParams: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        build: function build(dom) {
+          var el0 = dom.createTextNode("Posts");
+          return el0;
+        },
+        render: function render(context, env, contextualElement) {
+          var dom = env.dom;
+          dom.detectNamespace(contextualElement);
+          var fragment;
+          if (env.useFragmentCache && dom.canClone) {
+            if (this.cachedFragment === null) {
+              fragment = this.build(dom);
+              if (this.hasRendered) {
+                this.cachedFragment = fragment;
+              } else {
+                this.hasRendered = true;
+              }
+            }
+            if (this.cachedFragment) {
+              fragment = dom.cloneNode(this.cachedFragment, true);
+            }
+          } else {
+            fragment = this.build(dom);
+          }
+          return fragment;
+        }
+      };
+    }());
     return {
       isHTMLBars: true,
       blockParams: 0,
@@ -742,7 +831,15 @@ define('telegram-client/templates/profile', ['exports'], function (exports) {
       hasRendered: false,
       build: function build(dom) {
         var el0 = dom.createDocumentFragment();
+        var el1 = dom.createElement("p");
+        var el2 = dom.createTextNode("Profile page");
+        dom.appendChild(el1, el2);
+        dom.appendChild(el0, el1);
         var el1 = dom.createTextNode("\n\n");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
         dom.appendChild(el0, el1);
         var el1 = dom.createTextNode("\n");
         dom.appendChild(el0, el1);
@@ -750,7 +847,7 @@ define('telegram-client/templates/profile', ['exports'], function (exports) {
       },
       render: function render(context, env, contextualElement) {
         var dom = env.dom;
-        var hooks = env.hooks, content = hooks.content;
+        var hooks = env.hooks, block = hooks.block, content = hooks.content;
         dom.detectNamespace(contextualElement);
         var fragment;
         if (env.useFragmentCache && dom.canClone) {
@@ -768,8 +865,12 @@ define('telegram-client/templates/profile', ['exports'], function (exports) {
         } else {
           fragment = this.build(dom);
         }
-        var morph0 = dom.createMorphAt(fragment,0,1,contextualElement);
-        content(env, morph0, context, "outlet");
+        var morph0 = dom.createMorphAt(fragment,1,2,contextualElement);
+        var morph1 = dom.createMorphAt(fragment,2,3,contextualElement);
+        var morph2 = dom.createMorphAt(fragment,3,4,contextualElement);
+        block(env, morph0, context, "link-to", ["home"], {}, child0, null);
+        block(env, morph1, context, "link-to", ["posts"], {}, child1, null);
+        content(env, morph2, context, "outlet");
         return fragment;
       }
     };
@@ -882,7 +983,11 @@ define('telegram-client/templates/profile/index', ['exports'], function (exports
       hasRendered: false,
       build: function build(dom) {
         var el0 = dom.createDocumentFragment();
-        var el1 = dom.createTextNode("");
+        var el1 = dom.createElement("p");
+        var el2 = dom.createTextNode("Profile page");
+        dom.appendChild(el1, el2);
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n\n");
         dom.appendChild(el0, el1);
         var el1 = dom.createTextNode("\n");
         dom.appendChild(el0, el1);
@@ -908,8 +1013,7 @@ define('telegram-client/templates/profile/index', ['exports'], function (exports
         } else {
           fragment = this.build(dom);
         }
-        if (this.cachedFragment) { dom.repairClonedNode(fragment,[0]); }
-        var morph0 = dom.createMorphAt(fragment,0,1,contextualElement);
+        var morph0 = dom.createMorphAt(fragment,1,2,contextualElement);
         content(env, morph0, context, "outlet");
         return fragment;
       }
@@ -923,7 +1027,7 @@ define('telegram-client/tests/adapters/application.jshint', function () {
 
   module('JSHint - adapters');
   test('adapters/application.js should pass jshint', function() { 
-    ok(true, 'adapters/application.js should pass jshint.'); 
+    ok(false, 'adapters/application.js should pass jshint.\nadapters/application.js: line 1, col 1, \'import\' is only available in ES6 (use esnext option).\nadapters/application.js: line 3, col 1, \'export\' is only available in ES6 (use esnext option).\n\n2 errors'); 
   });
 
 });
@@ -933,7 +1037,7 @@ define('telegram-client/tests/app.jshint', function () {
 
   module('JSHint - .');
   test('app.js should pass jshint', function() { 
-    ok(true, 'app.js should pass jshint.'); 
+    ok(false, 'app.js should pass jshint.\napp.js: line 1, col 1, \'import\' is only available in ES6 (use esnext option).\napp.js: line 2, col 1, \'import\' is only available in ES6 (use esnext option).\napp.js: line 3, col 1, \'import\' is only available in ES6 (use esnext option).\napp.js: line 4, col 1, \'import\' is only available in ES6 (use esnext option).\napp.js: line 16, col 1, \'export\' is only available in ES6 (use esnext option).\n\n5 errors'); 
   });
 
 });
@@ -1000,7 +1104,7 @@ define('telegram-client/tests/models/post.jshint', function () {
 
   module('JSHint - models');
   test('models/post.js should pass jshint', function() { 
-    ok(true, 'models/post.js should pass jshint.'); 
+    ok(false, 'models/post.js should pass jshint.\nmodels/post.js: line 1, col 1, \'import\' is only available in ES6 (use esnext option).\nmodels/post.js: line 11, col 1, \'export\' is only available in ES6 (use esnext option).\n\n2 errors'); 
   });
 
 });
@@ -1010,7 +1114,7 @@ define('telegram-client/tests/models/user.jshint', function () {
 
   module('JSHint - models');
   test('models/user.js should pass jshint', function() { 
-    ok(true, 'models/user.js should pass jshint.'); 
+    ok(false, 'models/user.js should pass jshint.\nmodels/user.js: line 1, col 1, \'import\' is only available in ES6 (use esnext option).\nmodels/user.js: line 13, col 1, \'export\' is only available in ES6 (use esnext option).\n\n2 errors'); 
   });
 
 });
@@ -1020,7 +1124,7 @@ define('telegram-client/tests/router.jshint', function () {
 
   module('JSHint - .');
   test('router.js should pass jshint', function() { 
-    ok(true, 'router.js should pass jshint.'); 
+    ok(false, 'router.js should pass jshint.\nrouter.js: line 1, col 1, \'import\' is only available in ES6 (use esnext option).\nrouter.js: line 2, col 1, \'import\' is only available in ES6 (use esnext option).\nrouter.js: line 23, col 1, \'export\' is only available in ES6 (use esnext option).\n\n3 errors'); 
   });
 
 });
@@ -1030,7 +1134,7 @@ define('telegram-client/tests/routes/home.jshint', function () {
 
   module('JSHint - routes');
   test('routes/home.js should pass jshint', function() { 
-    ok(true, 'routes/home.js should pass jshint.'); 
+    ok(false, 'routes/home.js should pass jshint.\nroutes/home.js: line 1, col 1, \'import\' is only available in ES6 (use esnext option).\nroutes/home.js: line 3, col 1, \'export\' is only available in ES6 (use esnext option).\n\n2 errors'); 
   });
 
 });
@@ -1040,7 +1144,7 @@ define('telegram-client/tests/routes/home/index.jshint', function () {
 
   module('JSHint - routes/home');
   test('routes/home/index.js should pass jshint', function() { 
-    ok(true, 'routes/home/index.js should pass jshint.'); 
+    ok(false, 'routes/home/index.js should pass jshint.\nroutes/home/index.js: line 1, col 1, \'import\' is only available in ES6 (use esnext option).\nroutes/home/index.js: line 9, col 1, \'export\' is only available in ES6 (use esnext option).\n\n2 errors'); 
   });
 
 });
@@ -1050,7 +1154,7 @@ define('telegram-client/tests/routes/home/reset.jshint', function () {
 
   module('JSHint - routes/home');
   test('routes/home/reset.js should pass jshint', function() { 
-    ok(true, 'routes/home/reset.js should pass jshint.'); 
+    ok(false, 'routes/home/reset.js should pass jshint.\nroutes/home/reset.js: line 1, col 1, \'import\' is only available in ES6 (use esnext option).\nroutes/home/reset.js: line 10, col 1, \'export\' is only available in ES6 (use esnext option).\n\n2 errors'); 
   });
 
 });
@@ -1060,7 +1164,7 @@ define('telegram-client/tests/routes/home/signup.jshint', function () {
 
   module('JSHint - routes/home');
   test('routes/home/signup.js should pass jshint', function() { 
-    ok(true, 'routes/home/signup.js should pass jshint.'); 
+    ok(false, 'routes/home/signup.js should pass jshint.\nroutes/home/signup.js: line 1, col 1, \'import\' is only available in ES6 (use esnext option).\nroutes/home/signup.js: line 10, col 1, \'export\' is only available in ES6 (use esnext option).\n\n2 errors'); 
   });
 
 });
@@ -1070,7 +1174,7 @@ define('telegram-client/tests/routes/posts.jshint', function () {
 
   module('JSHint - routes');
   test('routes/posts.js should pass jshint', function() { 
-    ok(true, 'routes/posts.js should pass jshint.'); 
+    ok(false, 'routes/posts.js should pass jshint.\nroutes/posts.js: line 1, col 1, \'import\' is only available in ES6 (use esnext option).\nroutes/posts.js: line 9, col 1, \'export\' is only available in ES6 (use esnext option).\n\n2 errors'); 
   });
 
 });
@@ -1080,7 +1184,7 @@ define('telegram-client/tests/routes/profile.jshint', function () {
 
   module('JSHint - routes');
   test('routes/profile.js should pass jshint', function() { 
-    ok(true, 'routes/profile.js should pass jshint.'); 
+    ok(false, 'routes/profile.js should pass jshint.\nroutes/profile.js: line 1, col 1, \'import\' is only available in ES6 (use esnext option).\nroutes/profile.js: line 9, col 1, \'export\' is only available in ES6 (use esnext option).\n\n2 errors'); 
   });
 
 });
@@ -1090,7 +1194,7 @@ define('telegram-client/tests/routes/profile/followers.jshint', function () {
 
   module('JSHint - routes/profile');
   test('routes/profile/followers.js should pass jshint', function() { 
-    ok(true, 'routes/profile/followers.js should pass jshint.'); 
+    ok(false, 'routes/profile/followers.js should pass jshint.\nroutes/profile/followers.js: line 1, col 1, \'import\' is only available in ES6 (use esnext option).\nroutes/profile/followers.js: line 10, col 1, \'export\' is only available in ES6 (use esnext option).\n\n2 errors'); 
   });
 
 });
@@ -1100,7 +1204,7 @@ define('telegram-client/tests/routes/profile/following.jshint', function () {
 
   module('JSHint - routes/profile');
   test('routes/profile/following.js should pass jshint', function() { 
-    ok(true, 'routes/profile/following.js should pass jshint.'); 
+    ok(false, 'routes/profile/following.js should pass jshint.\nroutes/profile/following.js: line 1, col 1, \'import\' is only available in ES6 (use esnext option).\nroutes/profile/following.js: line 10, col 1, \'export\' is only available in ES6 (use esnext option).\n\n2 errors'); 
   });
 
 });
@@ -1110,7 +1214,7 @@ define('telegram-client/tests/routes/profile/index.jshint', function () {
 
   module('JSHint - routes/profile');
   test('routes/profile/index.js should pass jshint', function() { 
-    ok(true, 'routes/profile/index.js should pass jshint.'); 
+    ok(false, 'routes/profile/index.js should pass jshint.\nroutes/profile/index.js: line 1, col 1, \'import\' is only available in ES6 (use esnext option).\nroutes/profile/index.js: line 9, col 1, \'export\' is only available in ES6 (use esnext option).\n\n2 errors'); 
   });
 
 });
@@ -1287,7 +1391,7 @@ catch(err) {
 if (runningTests) {
   require("telegram-client/tests/test-helper");
 } else {
-  require("telegram-client/app")["default"].create({"name":"telegram-client","version":"0.0.0.87071056"});
+  require("telegram-client/app")["default"].create({"name":"telegram-client","version":"0.0.0.4d51d90b"});
 }
 
 /* jshint ignore:end */
