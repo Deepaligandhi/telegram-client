@@ -1,0 +1,10 @@
+<p>Latest posts :
+	<br>
+	{{#each post in controller}}
+  	{{post.ownedBy.userName}}: {{post.body}} <br/>
+{{/each}}
+
+</p>
+
+
+{{outlet}}
