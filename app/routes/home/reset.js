@@ -3,8 +3,11 @@ import Ember from 'ember';
 
 var HomeResetRoute = Ember.Route.extend({
 	model: function(){
-		//return this.store.find("user");
-	}
+		return{};
+	},
+	renderTemplate: function(controller) {
+      this.render('home.reset', {controller: controller});
+    }, 
 });
 
 export default HomeResetRoute;

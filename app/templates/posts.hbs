@@ -1,7 +1,7 @@
 <p>Latest posts :
 	<br/>
 	{{#each post in controller}}
-  		{{#link-to "profile" post.ownedBy}}{{post.ownedBy.userName}}{{/link-to}}: {{post.body}} <br/>
+  		{{#link-to "profile" post.author}}{{post.author.name}}{{/link-to}}: {{post.body}} <br/>
 	{{/each}}
 	<br/>
 {{#link-to "home"}}Home{{/link-to}}
