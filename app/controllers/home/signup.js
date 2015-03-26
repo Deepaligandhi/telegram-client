@@ -8,13 +8,13 @@ var HomeSignupController = Ember.ObjectController.extend({
 			var password = this.get('password');
 			var name = this.get('name');
 			var controller = this;
-			
 			var newUser = this.store.createRecord( 'user', {
-			id: username,
-			password: password,
-			name: name,
-			operation: 'signup'
+				id: username,
+				password: password,
+				name: name,
+				operation: 'signup'
 			});
+			
 			newUser.save().then(
        	 		function() {
     	  		    controller.transitionToRoute('posts');

@@ -10,25 +10,5 @@ var Post = DS.Model.extend({
 });
 
 
-Post.reopenClass({
-    FIXTURES: [
-        {
-            id: 1,
-            author: "deepali",
-            body: "rrrrrrasfdsfds"
-        },
-        {
-            id: 2,
-            author: "prashant",
-            body: "shfjdsfkjdshkdsa"
-        },
-        {
-            id: 3,
-            author: "deepali",
-            body: "sdfdsdkkkkllkdfldsdf"
-        }
-    ]
-});
-
 export default Post;
 

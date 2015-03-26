@@ -8,21 +8,4 @@ var User = DS.Model.extend({
     followingCurrentUser: DS.attr('boolean', {defaultValue: false}),
 });
 
-User.reopenClass({
-    FIXTURES: [
-        {
-            id: "deepali",
-            name: "Deepali Gandhi",
-        },
-        {
-            id: "prashant",
-            name: "PG",
-        },
-        {
-            id: "varun",
-            name: "Varun",
-        }
-    ]
-});
-
 export default User;
