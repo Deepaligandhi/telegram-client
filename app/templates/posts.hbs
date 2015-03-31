@@ -1,12 +1,19 @@
-<p>Latest posts :
-	<br/>
-	{{#each post in controller}}
-  		{{#link-to "profile" post.author}}{{post.author.name}}{{/link-to}}: {{post.body}} <br/>
-	{{/each}}
-	<br/>
-{{#link-to "home"}}Home{{/link-to}}
-
-</p>
+{{nav-bar user=authentication.authenticatedUser logout="logout"}}
 
 
-{{outlet}}
+<div class="dashboard">
+    <div class="create-post">
+      {{textarea value=postContent placeholder="What's happening?" autofocus="autofocus" maxlength=140}}
+      <div class="footer clearfix">
+        <div class="characters-left">{{postSize}} characters</div>
+        <button {{action "publish"}} class="publish dark-gray-btn" type="submit">Publish</button>
+      </div>
+    </div>
+
+    <div class="title">Latest posts</div>
+    <div class="posts-list">
+    	{{#each post in controller}}
+  			{{post-block user=authentication.authenticatedUser post=post delete="delete" repost="repost"}}
+		{{/each}}
+    </div>
+</div>

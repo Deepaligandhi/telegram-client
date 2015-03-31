@@ -1,6 +1,7 @@
 import Ember from 'ember';
 
 var HomeLoginController = Ember.ObjectController.extend({
+	authentication: Ember.inject.service(),
 	actions: {
 		login: function() {
 			var username = this.get('username');
@@ -14,7 +15,8 @@ var HomeLoginController = Ember.ObjectController.extend({
 				operation: 'login'
 			});
 			newUser.save().then(
-       	 		function() {
+       	 		function(user) {
+					controller.get('authentication').set('authenticatedUser', user);
     	  		    controller.transitionToRoute('posts');
     			 },
         		 function(response) {
@@ -22,9 +24,9 @@ var HomeLoginController = Ember.ObjectController.extend({
   					console.log(response.responseText); // 'Error message as string'
         		 }
       		);
-      	
+
 	},
-	}	
+	}
 });
 
 

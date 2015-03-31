@@ -6,7 +6,7 @@ var Post = DS.Model.extend({
     createdDate: DS.attr('string', {
           defaultValue: function() { return new Date(); }
       }),
-    repostedFromAuthor: DS.attr('string'),   
+    repostedFrom: DS.attr('string'),   
 });
 
 

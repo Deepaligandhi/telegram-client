@@ -8,27 +8,39 @@ module.exports = function(app) {
         {
         id: "p1",
         author: "andreisoare",
-        body: "post 1 body"
+        body: "post 1 body",
+        repostedFrom: ""
       },
       {
         id: "p2",
         author: "vladberteanu",
-        body: "post 2 body"
+        body: "post 2 body",
+        repostedFrom: "p1"
       }
       ]
     });
   });
 
   postsRouter.post('/', function(req, res) {
-    res.status(201).end();
+  	if(req.body.post.meta.operation === 'createPost'){
+  		var post = {
+    		id: req.body.post.id,
+    		author: req.body.post.author,
+        	body: req.body.post.body,
+        	repostedFrom: req.body.post.repostedFrom
+    	};
+    	res.send({
+			"post": post
+    	});
+  	}
   });
 
   postsRouter.get('/:id', function(req, res) {
-    res.send({
-      'posts': {
-        id: req.params.id
-      }
-    });
+    	res.send({
+      		'posts': {
+        	id: req.params.id
+      		}
+    	});
   });
 
   postsRouter.put('/:id', function(req, res) {
