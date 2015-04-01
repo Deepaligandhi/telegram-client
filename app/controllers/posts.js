@@ -5,7 +5,7 @@ var PostsController = Ember.ArrayController.extend({
 	sortAscending: false,
 
 	authentication: Ember.inject.service('authentication'),
-		
+
 	postContent: '',
 	postSize : function() {
 		var length = this.get('postContent').length;

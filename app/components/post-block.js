@@ -23,7 +23,6 @@ export default Ember.Component.extend({
   		var post = this.get('post');
   		if (this.get('repostConfirm')){
   			this.sendAction('repost', post);
-  			this.toggleProperty('repostConfirm');
   			this.toggleProperty('repostClicked');
   		}
   	},
