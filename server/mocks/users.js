@@ -7,12 +7,14 @@ module.exports = function(app) {
       id: 'andreisoare',
       name: 'Andrei Soare',
       email: 'andrei@abcd.com',
-      photo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQI1E2v28XONg6XyfvbpqWYEE-P8-xb3oiJVm4FvRMJRD6aEHZs-A'
+      photo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQI1E2v28XONg6XyfvbpqWYEE-P8-xb3oiJVm4FvRMJRD6aEHZs-A',
+      followedByCurrentUser: true
      },
     'vladberteanu': {
       id: 'vladberteanu',
       name: 'Vlad Berteanu',
       email: 'vlad@xyz.com',
+      followedByCurrentUser: true
      },
     'dgandhi': {
       id: 'dgandhi',

@@ -36,11 +36,11 @@
      	 <div class="post-block clearfix">
        		 <div class="repost-header clearfix">
          		 <img class="icon" src="images/icon-retweet.png"/>
-          		 <div class="author">Reposted by <a class="dark-gray-link">{{user.id}}</a></div>
+          		 <div class="author">Reposted by <a class="dark-gray-link">{{currentUser.id}}</a></div>
         	</div>
         	<a class="avatar link">
-        		{{#if user.photo}}
-        			<img {{bind-attr src=user.photo}}/>
+        		{{#if currentUser.photo}}
+        			<img {{bind-attr src=currentUser.photo}}/>
         		{{else}}
        				<img src = "images/avatar-yellow.png"/>
        			{{/if}}	

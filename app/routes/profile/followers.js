@@ -1,10 +1,9 @@
 import Ember from 'ember';
 
 var ProfileFollowersRoute = Ember.Route.extend({
-		model: function(params)
-		{
-				return this.store.find("user", {follows: params.user_id});
-		}
+	model: function() {
+		return this.store.find("user", {followedByCurrentUser: true});
+	}
 });
 
 export default ProfileFollowersRoute;

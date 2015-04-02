@@ -3,6 +3,8 @@ import layout from '../templates/components/post-block';
 
 export default Ember.Component.extend({
   layout: layout,
+  repostClicked: false,
+  repostConfirm: false,
   
   postAuthor: function(){
   		if (this.get('post.author.id') === this.get('user.id'))
@@ -10,14 +12,17 @@ export default Ember.Component.extend({
   			return true;
   		}	
  	 }.property('post.author.id', 'user.id'),
+ 	 
   actions: {
   	delete: function() {
   		var post = this.get('post');
   		this.sendAction('delete', post);
   	},
+  	
   	repostClicked: function() {
   		this.set('repostClicked', true);
   	},
+  	
   	repost: function() {
   		this.toggleProperty('repostConfirm');
   		var post = this.get('post');

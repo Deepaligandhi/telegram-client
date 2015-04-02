@@ -271,6 +271,59 @@ a {
   border-bottom: 1px solid #eeeeee;
 }
 
+.profile {
+  width: 600px;
+  margin-top: 40px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.profile .user-header {
+  text-align: center;
+}
+.profile .user-header .avatar {
+  width: 70px;
+  height: 70px;
+}
+.profile .user-header .name {
+  margin-top: 15px;
+  font-size: 18px;
+  font-weight: bold;
+}
+.profile .user-header .username {
+  font-size: 13px;
+  margin-top: 2px;
+  color: #666666;
+}
+.profile .user-header .follow {
+  margin-top: 25px;
+}
+.profile .tab-header {
+  text-align: center;
+  margin-top: 25px;
+  padding: 13px 0;
+  border-top: 1px solid #eeeeee;
+  border-bottom: 1px solid #eeeeee;
+}
+.profile .tab-header .tab {
+  font-size: 13px;
+  text-decoration: none;
+  cursor: pointer;
+  color: #178db6;
+  font-size: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding: 10px 0;
+}
+.profile .tab-header .tab.active {
+  font-size: 13px;
+  text-decoration: none;
+  cursor: pointer;
+  color: #666666;
+  font-size: 20px;
+  border-bottom: 3px solid #178db6;
+}
+
+
 .dark-gray-btn {
   padding: 5px 15px;
   background: white;

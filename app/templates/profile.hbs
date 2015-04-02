@@ -1,5 +1,18 @@
-<p>Profile page</p>
+{{nav-bar currentUser=authentication.authenticatedUser logout="logout"}}
 
-{{#link-to "home"}}Home{{/link-to}}
-{{#link-to "posts"}}Posts{{/link-to}}
-{{outlet}}
+<div class="profile">
+    <div class="user-header">
+      <img class="avatar" src="images/avatar-turquoise.png"/>
+      <div class="name">{{model.name}}</div>
+      <div class="username">@{{model.id}}</div>
+      <button class="blue-btn follow">Follow</button>
+    </div>
+	
+	<div class="tab-header">
+      {{#link-to "profile.posts" model class="tab"}}Posts{{/link-to}}
+      {{#link-to "profile.following" model class="tab active"}}Following{{/link-to}}
+      {{#link-to "profile.followers" model class="tab"}}Followers{{/link-to}}
+    </div>
+    
+    {{outlet}}
+</div>   

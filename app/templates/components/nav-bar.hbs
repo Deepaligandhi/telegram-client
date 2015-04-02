@@ -13,13 +13,13 @@
     <div class="third">
       <div class="user relative-center-y">
         <a class="avatar link">
-        {{#if user.photo}}
-        	{{#link-to "profile" user.id}}<img {{bind-attr src=user.photo}}/>{{/link-to}}
+        {{#if currentUser.photo}}
+        	{{#link-to "profile" currentUser.id}}<img {{bind-attr src=currentUser.photo}}/>{{/link-to}}
         {{else}}
        		<img src = "images/avatar-turquoise.png"/>
        	{{/if}}	
         </a>
-        <a class="name dark-gray-link">{{#link-to "profile" user.id}}{{user.id}}{{/link-to}}</a>
+        <a class="name dark-gray-link">{{#link-to "profile" currentUser.id}}{{currentUser.id}}{{/link-to}}</a>
         <a {{action "logout"}} class="logout dark-gray-link">Log out</a>
       </div>
     </div>

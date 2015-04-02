@@ -1,0 +1,15 @@
+<div class="user-block clearfix">
+        <a class="avatar link">
+        {{#if user.photo}}
+        	<img {{bind-attr src=user.photo}}/>
+        {{else}}
+          	<img src="images/avatar-red.png"/>
+        {{/if}}
+        </a>
+        <div class="name">
+          <a class="link">{{user.id}}</a>
+        </div>
+        <button {{action "follow"}}class="blue-btn follow relative-center-y">
+          Follow
+        </button>
+</div>

@@ -16,6 +16,7 @@ var PostsController = Ember.ArrayController.extend({
 		
 		logout: function() {
 			this.get('authentication').set('authenticatedUser', null);
+			this.store.unloadAll('user');
 			this.transitionToRoute('home.login');
 		},
 		
@@ -49,13 +50,12 @@ var PostsController = Ember.ArrayController.extend({
 		},
 		
 		repost: function(post){
-			var postId = post.get('id');
 			var postBody = post.get('body');
 			var controller = this;
 			var newPost = this.store.createRecord('post', {
 				body: postBody,
 				author: this.get('authentication.authenticatedUser'),
-				repostedFrom: postId,
+				repostedFrom: post,
 				operation: 'createPost'
 			});
 			newPost.save().then(

@@ -1,7 +1,7 @@
 module.exports = function(app) {
   var express = require('express');
   var postsRouter = express.Router();
-
+  var postId = 0;
   postsRouter.get('/', function(req, res) {
     res.send({
       'posts': [
@@ -22,9 +22,10 @@ module.exports = function(app) {
   });
 
   postsRouter.post('/', function(req, res) {
+  	postId++;
   	if(req.body.post.meta.operation === 'createPost'){
   		var post = {
-    		id: req.body.post.id,
+    		id: postId,
     		author: req.body.post.author,
         	body: req.body.post.body,
         	repostedFrom: req.body.post.repostedFrom

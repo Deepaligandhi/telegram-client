@@ -1,3 +1,5 @@
-<p>Profile page</p>
-
-{{outlet}}
+<div class="posts-list">
+  {{#each post in controller}}
+    {{post-block post=post delete='delete' currentUser=authentication.authenticatedUser}}
+  {{/each}}
+</div>
