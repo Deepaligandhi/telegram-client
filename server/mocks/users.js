@@ -82,8 +82,7 @@ module.exports = function(app) {
       name: 'Mr Bean',
       email: 'vg@ddd.com',
       followedByCurrentUser : true
-      }
-  	
+      } 	
   	]
   };
   
@@ -162,7 +161,7 @@ module.exports = function(app) {
   usersRouter.put('/:id', function(req, res) {
   	var userId = req.body.user.id;
   	console.log('userId :' + userId);
-  	//if (req.body.user.meta.operation === 'followUser'){
+  	if (req.body.user.meta.operation === 'followUser'){
   		var user = {
   			id: userId,
   			followedByCurrentUser: req.body.user.followedByCurrentUser
@@ -170,9 +169,9 @@ module.exports = function(app) {
     	res.send({
       		"user": users[userId]
     	});
-   // } 
-   /*
-    else if (req.body.user.meta.operation === 'unfollowUser'){
+    }; 
+   
+    if (req.body.user.meta.operation === 'unfollowUser'){
   		var user = {
   			id: userId,
   			followedByCurrentUser: false
@@ -181,7 +180,6 @@ module.exports = function(app) {
       		"user": users[userId]
     	});
     };
-    */
   });
 
   usersRouter.delete('/:id', function(req, res) {
