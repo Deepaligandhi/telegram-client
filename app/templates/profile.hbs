@@ -5,7 +5,11 @@
       <img class="avatar" src="images/avatar-turquoise.png"/>
       <div class="name">{{model.name}}</div>
       <div class="username">@{{model.id}}</div>
-      <button class="blue-btn follow">Follow</button>
+      {{#if model.followedByCurrentUser}}
+      	<button {{action "unfollow"}} class="blue-btn follow">Unfollow</button>
+      {{else}}
+      	<button {{action "follow"}} class="blue-btn follow">Follow</button>
+      {{/if}}	
     </div>
 	
 	<div class="tab-header">
@@ -13,6 +17,5 @@
       {{#link-to "profile.following" model class="tab active"}}Following{{/link-to}}
       {{#link-to "profile.followers" model class="tab"}}Followers{{/link-to}}
     </div>
-    
     {{outlet}}
 </div>   

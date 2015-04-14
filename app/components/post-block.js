@@ -7,11 +7,10 @@ export default Ember.Component.extend({
   repostConfirm: false,
   
   postAuthor: function(){
-  		if (this.get('post.author.id') === this.get('user.id'))
-  		{
+  		if (this.get('post.author.id') === this.get('currentUser.id')) {
   			return true;
   		}	
- 	 }.property('post.author.id', 'user.id'),
+ 	 }.property('post.author', 'currentUser'),
  	 
   actions: {
   	delete: function() {

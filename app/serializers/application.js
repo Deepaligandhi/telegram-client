@@ -3,12 +3,7 @@ import DS from 'ember-data';
 export default DS.RESTSerializer.extend({
 serialize: function(record, options) {
     var data = this._super(record, options);
-
-    data.meta = {
-      operation: record.get('operation'),
-      dashboard: record.get('dashboard')
-    };
-
+    data.meta = record.get('meta');
     return data;
   }
 });

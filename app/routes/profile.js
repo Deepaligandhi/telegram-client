@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
-var ProfilePostsRoute = Ember.Route.extend({
+var ProfileRoute = Ember.Route.extend({
 	
 });
 
-export default ProfilePostsRoute;
+export default ProfileRoute;

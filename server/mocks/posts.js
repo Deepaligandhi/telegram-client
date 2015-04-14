@@ -2,9 +2,8 @@ module.exports = function(app) {
   var express = require('express');
   var postsRouter = express.Router();
   var postId = 0;
-  postsRouter.get('/', function(req, res) {
-    res.send({
-      'posts': [
+  
+  var posts = [
         {
         id: "p1",
         author: "andreisoare",
@@ -16,14 +15,41 @@ module.exports = function(app) {
         author: "vladberteanu",
         body: "post 2 body",
         repostedFrom: "p1"
+      },
+      {
+        id: "p3",
+        author: "vladberteanu",
+        body: "post 3 body",
+        repostedFrom: "p1"
+      },
+      {
+        id: "p4",
+        author: "vladberteanu",
+        body: "post 4 body",
+        repostedFrom: "p1"
       }
-      ]
-    });
+    ];
+      
+  postsRouter.get('/', function(req, res) {
+    console.log(req.query.author);
+    if (req.query.dashboard){
+    	res.send({
+      		"posts": posts
+    	});
+    };
+    if (req.query.author) {
+    	var authorPosts = posts.filter(function(post) {
+    		return post.author === req.query.author;
+    	});
+    	res.send({
+      		"posts": authorPosts
+    	});
+    };
   });
 
   postsRouter.post('/', function(req, res) {
-  	postId++;
   	if(req.body.post.meta.operation === 'createPost'){
+  		postId++;
   		var post = {
     		id: postId,
     		author: req.body.post.author,
@@ -33,6 +59,7 @@ module.exports = function(app) {
     	res.send({
 			"post": post
     	});
+    	posts.push(post);
   	}
   });
 

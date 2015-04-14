@@ -7,9 +7,15 @@
         {{/if}}
         </a>
         <div class="name">
-          <a class="link">{{user.id}}</a>
+          {{#link-to 'profile.posts' user classNames='link'}}>{{user.id}}{{/link-to}}
         </div>
-        <button {{action "follow"}}class="blue-btn follow relative-center-y">
-          Follow
-        </button>
+        {{#if user.followedByCurrentUser}}
+       	 	<button {{action "unfollow" model}} class="blue-btn follow relative-center-y">
+          		Unfollow
+        	</button>
+        {{else}}
+       		 <button {{action "follow" model}} class="blue-btn follow relative-center-y">
+         		 Follow
+        	 </button>
+        {{/if}}
 </div>

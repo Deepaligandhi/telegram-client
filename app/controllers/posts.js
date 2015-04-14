@@ -21,19 +21,20 @@ var PostsController = Ember.ArrayController.extend({
 		},
 		
 		publish: function() {
-			var thisUser = this.get('authentication.authenticatedUser');
 			var postContent = this.get('postContent');
 			var controller = this;
 			if(postContent) {
 				var post = this.store.createRecord('post',{
 					body: postContent,
 					createdDate:new Date(),
-					author: thisUser,
-					operation: 'createPost'
+					author: controller.get('authentication.authenticatedUser'),
+					meta: {
+						operation: 'createPost'
+					}
 				});
 				post.save().then(
 					function(post){
-						controller.get('model').pushObject(post);
+						controller.get('model').addObject(post);
 						controller.set('postContent', '');
 					},
 					function(response) {
@@ -54,13 +55,15 @@ var PostsController = Ember.ArrayController.extend({
 			var controller = this;
 			var newPost = this.store.createRecord('post', {
 				body: postBody,
-				author: this.get('authentication.authenticatedUser'),
+				author: controller.get('authentication.authenticatedUser'),
 				repostedFrom: post,
-				operation: 'createPost'
+				meta: {
+						operation: 'createPost'
+				}
 			});
 			newPost.save().then(
 				function(post) {
-					controller.get('model').pushObject(post);
+					controller.get('model').addObject(post);
 				},
 				function(response) {
 					console.log(response.statusCode); // 404
@@ -69,7 +72,6 @@ var PostsController = Ember.ArrayController.extend({
 			);
 		},
 	},
-	
 });
 
 export default PostsController;

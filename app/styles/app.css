@@ -189,6 +189,11 @@ a {
   margin-top: 7px;
   font-size: 13px;
 }
+
+.post-block .reposted {
+  margin-top: 7px;
+  font-size: 10px;
+}
 .post-block .content .question {
   font-size: 13px;
   margin-top: 5px;
@@ -323,7 +328,18 @@ a {
   border-bottom: 3px solid #178db6;
 }
 
-
+.blue-btn {
+  padding: 5px 15px;
+  background: white;
+  border: 1px solid;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 13px;
+  display: inline-block;
+  line-height: 18px;
+  color: #178db6;
+  border-color: #178db6;
+}
 .dark-gray-btn {
   padding: 5px 15px;
   background: white;
@@ -408,7 +424,15 @@ a {
   transform: translateY(-50%);
   position: relative;
 }
-::-webkit-input-placeholder {
+.err-msg {
+  display: block;
+  margin-top: 60px;
+  height:14px;
+  color:red;
+  font-size: 12px;
+  text-align:center;
+}
+:-webkit-input-placeholder {
   /* WebKit browsers */
   color: black;
 }

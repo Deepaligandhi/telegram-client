@@ -1,8 +1,9 @@
 import Ember from 'ember';
 
 var ProfilePostsRoute = Ember.Route.extend({
-	model: function(params){
-		return this.store.find("post", {author: params.user_id});
+	model: function(){
+		var userId = this.modelFor('profile').get('id');
+		return this.store.find("post", {author: userId});
 	}
 });
 

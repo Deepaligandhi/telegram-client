@@ -11,13 +11,13 @@
           		<div class="text">{{post.body}}</div>
           		<div class="footer">
             		<span class="timestamp">{{ago post.createdDate}}</span>
-            		<span class="middot">&middot;</span>
-            		<a {{action "repostClicked"}} class="blue-link">Repost</a>
+            			<span class="middot">&middot;</span>
+            			<a {{action "repostClicked"}} class="blue-link">Repost</a>
             		{{#if postAuthor}}
             			<span class="middot">&middot;</span>
             			<a {{action "delete"}} class="blue-link">Delete</a>
           			{{/if}}
-          		</div>    
+          		</div>
       </div>
 	 {{#if repostClicked}}
       	<div class="post-block clearfix confirm-repost">
@@ -44,8 +44,9 @@
         		{{else}}
        				<img src = "images/avatar-yellow.png"/>
        			{{/if}}	
-       		</a>	
+       		</a>
+       		<div class="reposted">{{post.body}}</div>	
       	</div>
       {{/if}}
 </div>
-{{yield}}
+
