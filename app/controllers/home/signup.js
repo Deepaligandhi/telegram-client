@@ -9,7 +9,6 @@ var HomeSignupController = Ember.Controller.extend({
 	error: '',
 	
 	actions: {
-
 		signup: function() {
 			this.set('error', null);
 			var name = this.get('name');
@@ -45,6 +44,5 @@ var HomeSignupController = Ember.Controller.extend({
 		}
 	}
 });
-
 
 export default HomeSignupController;

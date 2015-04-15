@@ -6,9 +6,8 @@ var Post = DS.Model.extend({
     createdDate: DS.attr('string', {
           defaultValue: function() { return new Date(); }
       }),
-    repostedFrom: DS.attr('string')   
+    repostedFrom: DS.belongsTo('post', {async:true, inverse: null})
 });
-
 
 export default Post;
 

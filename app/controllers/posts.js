@@ -44,6 +44,7 @@ var PostsController = Ember.ArrayController.extend({
 				);
 			}
 		},
+		
 		delete: function(post){
 			this.get('model').removeObject(post);
 			post.deleteRecord();
@@ -51,10 +52,9 @@ var PostsController = Ember.ArrayController.extend({
 		},
 		
 		repost: function(post){
-			var postBody = post.get('body');
 			var controller = this;
 			var newPost = this.store.createRecord('post', {
-				body: postBody,
+				body: post.get('body'),
 				author: controller.get('authentication.authenticatedUser'),
 				repostedFrom: post,
 				meta: {
@@ -70,8 +70,8 @@ var PostsController = Ember.ArrayController.extend({
   					console.log(response.responseText); // 'Error message as string'
 				}
 			);
-		},
-	},
+		}	
+	}
 });
 
 export default PostsController;

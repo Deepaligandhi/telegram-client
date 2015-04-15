@@ -7,26 +7,22 @@ module.exports = function(app) {
         {
         id: "p1",
         author: "andreisoare",
-        body: "post 1 body",
-        repostedFrom: ""
+        body: "post 1 body"
       },
       {
         id: "p2",
         author: "vladberteanu",
-        body: "post 2 body",
-        repostedFrom: "p1"
+        body: "post 2 body"
       },
       {
         id: "p3",
         author: "vladberteanu",
-        body: "post 3 body",
-        repostedFrom: "p1"
+        body: "post 3 body"
       },
       {
         id: "p4",
         author: "vladberteanu",
-        body: "post 4 body",
-        repostedFrom: "p1"
+        body: "post 4 body"
       }
     ];
       

@@ -4,7 +4,6 @@ import layout from '../templates/components/post-block';
 export default Ember.Component.extend({
   layout: layout,
   repostClicked: false,
-  repostConfirm: false,
   
   postAuthor: function(){
   		if (this.get('post.author.id') === this.get('currentUser.id')) {
@@ -23,18 +22,15 @@ export default Ember.Component.extend({
   	},
   	
   	repost: function() {
-  		this.toggleProperty('repostConfirm');
   		var post = this.get('post');
-  		if (this.get('repostConfirm')){
-  			this.sendAction('repost', post);
-  			this.toggleProperty('repostClicked');
-  		}
+  		this.sendAction('repost', post);
+  		this.toggleProperty('repostClicked');
   	},
   	
   	cancel: function() {
-  		this.set('repostConfirm', false);
   		this.set('repostClicked', false);
   	},
+  		
   },
   
 });
