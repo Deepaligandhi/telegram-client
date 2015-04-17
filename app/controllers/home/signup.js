@@ -13,7 +13,7 @@ var HomeSignupController = Ember.Controller.extend({
 			this.set('error', null);
 			var name = this.get('name');
 			var email = this.get('email');
-			var regex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i
+			var regex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
 
 			if (!regex.test(email)) {
 				return (this.set('error', 'Please enter a valid email'));
