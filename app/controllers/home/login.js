@@ -6,7 +6,7 @@ var HomeLoginController = Ember.Controller.extend({
 	password: '',
 	name: '',
 	error: '',
-	
+
 	actions: {
 		login: function() {
 			this.set('error', null);
@@ -33,14 +33,14 @@ var HomeLoginController = Ember.Controller.extend({
 				controller.set('username', '');
 				controller.set('password', '');
 				controller.set('name', '');
-    	  		controller.transitionToRoute('posts');
-    		}, function(response) {
-         		console.log(response.statusCode); // 404
-  				console.log(response.responseText); // 'Error message as string'
-  				var errText = response.responseText;
-  				return (controller.set('error', errText));
-        	});
-	},
+				controller.transitionToRoute('posts');
+			}, function(response) {
+				console.log(response.statusCode); // 404
+				console.log(response.responseText); // 'Error message as string'
+				var errText = response.responseText;
+				return (controller.set('error', errText));
+			});
+		},
 	}
 });
 

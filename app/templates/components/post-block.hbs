@@ -1,65 +1,65 @@
 {{#if post.repostedFrom}}
-	<div class="post-block clearfix">
-		<div class="repost-header">
-         		 	<img class="icon" src="images/icon-retweet.png"/>
-          		 	<div class="author">Reposted by <a class="dark-gray-link">{{#link-to "profile" post.author}}{{post.author.name}}{{/link-to}}</a></div>
-        </div>
-		<a class="avatar link">
-       		{{#if post.author.photo}}
-       			{{#link-to "profile" post.repostedFrom.author}}<img {{bind-attr src=post.repostedFrom.author.photo}}/>{{/link-to}}
-       		{{else}}
-       			<img src = "images/avatar-red.png"/>
-       		{{/if}}
-    	</a>
-    	<div class="content">			
-        	<div class="author"><a class="link">{{#link-to "profile" post.repostedFrom.author}}{{post.repostedFrom.author.name}}{{/link-to}}</a></div>
-          	<div class="text">{{post.repostedFrom.body}}</div>
-          	<div class="footer">
-            	<span class="timestamp">{{ago post.repostedFrom.createdDate}}</span>
-            	<span class="middot">&middot;</span>
-            	<a {{action "repostClicked"}} class="blue-link">Repost</a>
-            	{{#if postAuthor}}
-            		<span class="middot">&middot;</span>
-            		<a {{action "delete"}} class="blue-link">Delete</a>
-          		{{/if}}
-          	</div>
-      	</div>
+<div class="post-block clearfix">
+	<div class="repost-header">
+		<img class="icon" src="images/icon-retweet.png"/>
+		<div class="author">Reposted by <a class="dark-gray-link">{{#link-to "profile" post.author}}{{post.author.name}}{{/link-to}}</a></div>
 	</div>
+	<a class="avatar link">
+		{{#if post.author.photo}}
+		{{#link-to "profile" post.repostedFrom.author}}<img {{bind-attr src=post.repostedFrom.author.photo}}/>{{/link-to}}
+		{{else}}
+		<img src = "images/avatar-red.png"/>
+		{{/if}}
+	</a>
+	<div class="content">
+		<div class="author"><a class="link">{{#link-to "profile" post.repostedFrom.author}}{{post.repostedFrom.author.name}}{{/link-to}}</a></div>
+		<div class="text">{{post.repostedFrom.body}}</div>
+		<div class="footer">
+			<span class="timestamp">{{ago post.repostedFrom.createdDate}}</span>
+			<span class="middot">&middot;</span>
+			<a {{action "repostClicked"}} class="blue-link">Repost</a>
+			{{#if postAuthor}}
+			<span class="middot">&middot;</span>
+			<a {{action "delete"}} class="blue-link">Delete</a>
+			{{/if}}
+		</div>
+	</div>
+</div>
 {{else}}
-    <div class="post-block clearfix">
-		<a class="avatar link">
-       		{{#if post.author.photo}}
-       			{{#link-to "profile" post.author}}<img {{bind-attr src=post.author.photo}}/>{{/link-to}}
-       		{{else}}
-       			<img src = "images/avatar-red.png"/>
-       		{{/if}}
-    	</a>
-    	<div class="content">			
-        	<div class="author"><a class="link">{{#link-to "profile" post.author}}{{post.author.name}}{{/link-to}}</a></div>
-          	<div class="text">{{post.body}}</div>
-          	<div class="footer">
-            	<span class="timestamp">{{ago post.createdDate}}</span>
-            	<span class="middot">&middot;</span>
-            	<a {{action "repostClicked"}} class="blue-link">Repost</a>
-            	{{#if postAuthor}}
-            		<span class="middot">&middot;</span>
-            		<a {{action "delete"}} class="blue-link">Delete</a>
-          		{{/if}}
-          	</div>
-      	</div>
+<div class="post-block clearfix">
+	<a class="avatar link">
+		{{#if post.author.photo}}
+		{{#link-to "profile" post.author}}<img {{bind-attr src=post.author.photo}}/>{{/link-to}}
+		{{else}}
+		<img src = "images/avatar-red.png"/>
+		{{/if}}
+	</a>
+	<div class="content">
+		<div class="author"><a class="link">{{#link-to "profile" post.author}}{{post.author.name}}{{/link-to}}</a></div>
+		<div class="text">{{post.body}}</div>
+		<div class="footer">
+			<span class="timestamp">{{ago post.createdDate}}</span>
+			<span class="middot">&middot;</span>
+			<a {{action "repostClicked"}} class="blue-link">Repost</a>
+			{{#if postAuthor}}
+			<span class="middot">&middot;</span>
+			<a {{action "delete"}} class="blue-link">Delete</a>
+			{{/if}}
+		</div>
 	</div>
-{{/if}}
-{{#if repostClicked}}
-   <div class="post-block clearfix confirm-repost">
-        <img class="avatar" src="images/icon-retweet.png"/>
-        <div class="content">
-          	<div class="question">Repost this to your followers?</div>
-          	<div class="footer">
-            		<a {{action "repost"}} class="blue-link">Yes</a>
-            		<span class="middot">&middot;</span>
-            		<a {{action "cancel"}} class="blue-link">No</a>
-          	</div>
-        </div>
-   </div>
+</div>
 {{/if}}
 
+{{#if repostClicked}}
+<div class="post-block clearfix confirm-repost">
+	<img class="avatar" src="images/icon-retweet.png"/>
+	<div class="content">
+		<div class="question">Repost this to your followers?</div>
+		<div class="footer">
+			<a {{action "repost"}} class="blue-link">Yes</a>
+			<span class="middot">&middot;</span>
+			<a {{action "cancel"}} class="blue-link">No</a>
+		</div>
+	</div>
+</div>
+{{/if}}

@@ -1,20 +1,20 @@
 <form {{action "signup" on="submit"}}>
-            <fieldset>
-                  <p class="p2">Get going ...</p>
-                  Enter your name ...{{input type="text" placeholder="Your name" value=name}}
-                 <hr color=#EEEEEE>
-                 Enter your email ...{{input type="email" placeholder="Your name" value=email}}
-                <hr color=#EEEEEE>
-                  Enter your username ...{{input type="text" placeholder="Your username" value=username}}
-                 <hr color=#EEEEEE>
-                  Enter your password ...{{input type="password" placeholder="Your password" value=password}}
-                  <hr color=#EEEEEE>
-                  <button class="button" type="submit">Sign up</button>
-                  <p class="p1">
-                  	{{#link-to "home.login"}}Log in{{/link-to}}
-                  </p>
-            </fieldset>
+  <fieldset>
+    <p class="p2">Get going ...</p>
+    Enter your name ...{{input type="text" placeholder="Your name" value=name}}
+    <hr color=#EEEEEE>
+    Enter your email ...{{input type="text" placeholder="Your name" value=email}}
+    <hr color=#EEEEEE>
+    Enter your username ...{{input type="text" placeholder="Your username" value=username}}
+    <hr color=#EEEEEE>
+    Enter your password ...{{input type="password" placeholder="Your password" value=password}}
+    <hr color=#EEEEEE>
+    <button class="button" type="submit">Sign up</button>
+    <p class="p1">
+      {{#link-to "home.login"}}Log in{{/link-to}}
+    </p>
+  </fieldset>
 </form>
 {{#if error}}
-  	<div class="err-msg">Error: {{error}}</div>
+<div class="err-msg">Error: {{error}}</div>
 {{/if}}

@@ -1,28 +1,27 @@
 <div class="nav-bar clearfix">
-    <div class="third">
-      <div class="homepage relative-center-y">
-        <img class="icon" src="images/icon-home.png"/>
-        <a class="title dark-gray-link">{{#link-to "home"}}Home{{/link-to}}</a>
-      </div>
+  <div class="third">
+    <div class="homepage relative-center-y">
+      <img class="icon" src="images/icon-home.png"/>
+      <a class="title dark-gray-link">{{#link-to "home"}}Home{{/link-to}}</a>
     </div>
+  </div>
 
-    <div class="third">
-      {{#link-to "posts"}}<img class="logo relative-center-xy" src="images/telegram-logo-small.png"/>{{/link-to}}
-    </div>
+  <div class="third">
+    {{#link-to "posts"}}<img class="logo relative-center-xy" src="images/telegram-logo-small.png"/>{{/link-to}}
+  </div>
 
-    <div class="third">
-      <div class="user relative-center-y">
-        <a class="avatar link">{{#link-to "profile" currentUser}}
+  <div class="third">
+    <div class="user relative-center-y">
+      <a class="avatar link">{{#link-to "profile" currentUser}}
         {{#if currentUser.photo}}
-        	<img {{bind-attr src=currentUser.photo}}/>
+        <img {{bind-attr src=currentUser.photo}}/>
         {{else}}
-       		<img src = "images/avatar-turquoise.png"/>
-       	{{/if}}	
-       	{{/link-to}}
-        </a>
-        <a class="name dark-gray-link">{{#link-to "profile" currentUser}}{{currentUser.name}}{{/link-to}}</a>
-        <a {{action "logout"}} class="logout dark-gray-link">Log out</a>
-      </div>
+        <img src = "images/avatar-turquoise.png"/>
+        {{/if}}
+        {{/link-to}}
+      </a>
+      <a class="name dark-gray-link">{{#link-to "profile" currentUser}}{{currentUser.name}}{{/link-to}}</a>
+      <a {{action "logout"}} class="logout dark-gray-link">Log out</a>
     </div>
+  </div>
 </div>
-

@@ -7,14 +7,16 @@ var HomeSignupController = Ember.Controller.extend({
 	name: '',
 	email: '',
 	error: '',
-	
+
 	actions: {
 		signup: function() {
 			this.set('error', null);
 			var name = this.get('name');
 			var email = this.get('email');
-			if (!email) {
-				return (this.set('error', 'Email cannot be blank! Please enter a valid email'));
+			var regex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i
+
+			if (!regex.test(email)) {
+				return (this.set('error', 'Please enter a valid email'));
 			}
 			var username = this.get('username');
 			if (!username) {
@@ -35,12 +37,12 @@ var HomeSignupController = Ember.Controller.extend({
 				}
 			});
 			newUser.save().then(function(user) {
-    	  		controller.get('authentication').set('authenticatedUser', user);
-    	  		controller.transitionToRoute('posts');
-    		}, function(response) {
-         		console.log(response.statusCode); // 404
-  				console.log(response.responseText); // 'Error message as string'
-        	});
+				controller.get('authentication').set('authenticatedUser', user);
+				controller.transitionToRoute('posts');
+			}, function(response) {
+				console.log(response.statusCode); // 404
+				console.log(response.responseText); // 'Error message as string'
+			});
 		}
 	}
 });

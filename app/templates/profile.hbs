@@ -6,16 +6,16 @@
       <div class="name">{{model.name}}</div>
       <div class="username">@{{model.id}}</div>
       {{#if model.followedByCurrentUser}}
-      	<button {{action "unfollow"}} class="blue-btn follow">Unfollow</button>
+      	<button {{action "unfollow" model}} class="blue-btn follow">Unfollow</button>
       {{else}}
-      	<button {{action "follow"}} class="blue-btn follow">Follow</button>
-      {{/if}}	
+      	<button {{action "follow" model}} class="blue-btn follow">Follow</button>
+      {{/if}}
     </div>
-	
+
 	<div class="tab-header">
       {{#link-to "profile.posts" model class="tab"}}Posts{{/link-to}}
       {{#link-to "profile.following" model class="tab"}}Following{{/link-to}}
       {{#link-to "profile.followers" model class="tab"}}Followers{{/link-to}}
     </div>
     {{outlet}}
-</div>   
+</div>

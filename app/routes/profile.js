@@ -10,28 +10,28 @@ var ProfileRoute = Ember.Route.extend({
 				}
 			});
 			user.save().then(
-			function() {
-    		}, function(response) {
-         		console.log(response.statusCode); // 404
-  				console.log(response.responseText); // 'Error message as string'
-        	});
-		},
-		
-		unfollow: function(user) {
-			user.setProperties( {
-				followedByCurrentUser: false,
-				meta: {
-					operation: 'unfollowUser'
-				}
-			});
-			user.save().then(
-			function() {
-    		}, function(response) {
-         		console.log(response.statusCode); // 404
-  				console.log(response.responseText); // 'Error message as string'
-        	});
-		}
-	}
-});
+				function() {
+				}, function(response) {
+					console.log(response.statusCode); // 404
+					console.log(response.responseText); // 'Error message as string'
+				});
+			},
 
-export default ProfileRoute;
+			unfollow: function(user) {
+				user.setProperties( {
+					followedByCurrentUser: false,
+					meta: {
+						operation: 'unfollowUser'
+					}
+				});
+				user.save().then(
+					function() {
+					}, function(response) {
+						console.log(response.statusCode); // 404
+						console.log(response.responseText); // 'Error message as string'
+					});
+				}
+			}
+		});
+
+		export default ProfileRoute;
