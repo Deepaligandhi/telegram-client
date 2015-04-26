@@ -3,7 +3,7 @@ import Ember from 'ember';
 var PostsRoute = Ember.Route.extend({
 	authentication: Ember.inject.service(),
 	beforeModel: function() {
-		if (!this.get('authentication.authenticatedUser')) {
+		if (!this.get('session.user')) {
 			this.transitionTo('home.login');
 		}
 	},

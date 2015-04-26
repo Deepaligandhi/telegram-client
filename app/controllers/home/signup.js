@@ -38,10 +38,13 @@ var HomeSignupController = Ember.Controller.extend({
 			});
 			newUser.save().then(function(user) {
 				controller.get('authentication').set('authenticatedUser', user);
+				controller.set('session.user', user);
 				controller.transitionToRoute('posts');
 			}, function(response) {
 				console.log(response.statusCode); // 404
 				console.log(response.responseText); // 'Error message as string'
+				var errText = response.responseText;
+				return (controller.set('error', errText));
 			});
 		}
 	}

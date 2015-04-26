@@ -1,4 +1,4 @@
-{{nav-bar currentUser=authentication.authenticatedUser logout="logout"}}
+{{nav-bar currentUser=session.user logout="logout"}}
 
 <div class="dashboard">
   <div class="create-post">
@@ -12,7 +12,7 @@
   <div class="title">Latest posts</div>
   <div class="posts-list">
     {{#each post in controller}}
-    {{post-block currentUser=authentication.authenticatedUser post=post delete="delete" repost="repost"}}
+    {{post-block currentUser=session.user post=post delete="delete" repost="repost"}}
     {{/each}}
   </div>
 </div>

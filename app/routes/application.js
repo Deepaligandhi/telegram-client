@@ -10,7 +10,6 @@ export default Ember.Route.extend({
       if (users && users.get('length') > 0) {
         var user = users.get('firstObject');
         route.set('session.user', user);
-        console.log('session.user');
       }
       return users;
     });

@@ -20,7 +20,7 @@ var PostsController = Ember.ArrayController.extend({
 				var post = this.store.createRecord('post',{
 					body: postContent,
 					createdDate:new Date(),
-					author: controller.get('authentication.authenticatedUser'),
+					author: controller.get('session.user'),
 					meta: {
 						operation: 'createPost'
 					}
@@ -41,6 +41,7 @@ var PostsController = Ember.ArrayController.extend({
 		delete: function(post){
 			this.get('model').removeObject(post);
 			post.deleteRecord();
+			post.get('isDeleted');
 			post.save();
 		},
 
@@ -48,7 +49,7 @@ var PostsController = Ember.ArrayController.extend({
 			var controller = this;
 			var newPost = this.store.createRecord('post', {
 				body: post.get('body'),
-				author: controller.get('authentication.authenticatedUser'),
+				author: controller.get('session.user'),
 				repostedFrom: post,
 				meta: {
 						operation: 'createPost'

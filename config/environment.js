@@ -2,9 +2,9 @@
 
 module.exports = function(environment) {
   var ENV = {
-  	contentSecurityPolicy: {
-      'style-src': "'self' 'unsafe-inline'",
-    },
+  	//contentSecurityPolicy: {
+    //  'style-src': "'self' 'unsafe-inline'",
+    //},
     modulePrefix: 'telegram-client',
     environment: environment,
     baseURL: '/',

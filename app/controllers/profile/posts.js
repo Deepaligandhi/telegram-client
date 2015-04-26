@@ -11,12 +11,12 @@ var ProfilePostsController = Ember.ArrayController.extend({
 			post.deleteRecord();
 			post.save();
 		},
-		
+
 		repost: function(post){
 			var controller = this;
 			var newPost = this.store.createRecord('post', {
 				body: post.get('body'),
-				author: controller.get('authentication.authenticatedUser'),
+				author: controller.get('session.user'),
 				repostedFrom: post,
 				meta: {
 						operation: 'createPost'
@@ -31,8 +31,8 @@ var ProfilePostsController = Ember.ArrayController.extend({
   					console.log(response.responseText); // 'Error message as string'
 				}
 			);
-		}	
-	
+		}
+
 	}
 });
 

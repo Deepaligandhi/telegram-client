@@ -30,6 +30,7 @@ var HomeLoginController = Ember.Controller.extend({
 			});
 			newUser.save().then(function(user) {
 				controller.get('authentication').set('authenticatedUser', user);
+				controller.set('session.user', user);
 				controller.set('username', '');
 				controller.set('password', '');
 				controller.set('name', '');
