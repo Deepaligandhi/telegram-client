@@ -29,15 +29,14 @@ var HomeSignupController = Ember.Controller.extend({
 			var controller = this;
 			var newUser = this.store.createRecord( 'user', {
 				id: username,
-				password: password,
 				name: name,
 				email: email,
 				meta: {
+					password: password,
 					operation: 'signup'
 				}
 			});
 			newUser.save().then(function(user) {
-				controller.get('authentication').set('authenticatedUser', user);
 				controller.set('session.user', user);
 				controller.transitionToRoute('posts');
 			}, function(response) {

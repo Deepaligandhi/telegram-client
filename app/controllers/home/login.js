@@ -22,14 +22,13 @@ var HomeLoginController = Ember.Controller.extend({
 			var controller = this;
 			var newUser = this.store.createRecord('user', {
 				id: username,
-				password: password,
 				name: name,
 				meta: {
+					password: password,
 					operation: 'login'
 				}
 			});
 			newUser.save().then(function(user) {
-				controller.get('authentication').set('authenticatedUser', user);
 				controller.set('session.user', user);
 				controller.set('username', '');
 				controller.set('password', '');
