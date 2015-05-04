@@ -1,7 +1,6 @@
 import Ember from 'ember';
 
 var HomeSignupController = Ember.Controller.extend({
-	authentication: Ember.inject.service(),
 	username: '',
 	password: '',
 	name: '',
@@ -32,7 +31,7 @@ var HomeSignupController = Ember.Controller.extend({
 				name: name,
 				email: email,
 				meta: {
-					password: password,
+					password: md5(password + username),
 					operation: 'signup'
 				}
 			});

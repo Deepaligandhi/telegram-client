@@ -37,6 +37,7 @@
     "ember-moment": "1.1.1",
     "express": "^4.12.3",
     "glob": "^4.5.3",
-    "morgan": "^1.5.2"
+    "morgan": "^1.5.2",
+    "ember-cli-md5": "~0.1.0"
   }
 }

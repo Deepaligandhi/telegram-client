@@ -1,7 +1,6 @@
 import Ember from 'ember';
 
 var HomeLoginController = Ember.Controller.extend({
-	authentication: Ember.inject.service(),
 	username: '',
 	password: '',
 	name: '',
@@ -15,6 +14,7 @@ var HomeLoginController = Ember.Controller.extend({
 				return (this.set('error', 'Username cannot be blank! Please enter your username'));
 			}
 			var password = this.get('password');
+
 			if (!password) {
 				return (this.set('error', 'Password cannot be blank! Please enter your password'));
 			}
@@ -24,7 +24,7 @@ var HomeLoginController = Ember.Controller.extend({
 				id: username,
 				name: name,
 				meta: {
-					password: password,
+					password: md5(password + username),
 					operation: 'login'
 				}
 			});

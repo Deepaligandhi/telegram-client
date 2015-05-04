@@ -1,8 +1,6 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
-  authentication: Ember.inject.service('authentication'),
-
   beforeModel: function() {
     var route = this;
     var promise = this.store.find('user', {isAuthenticated: true});
@@ -17,8 +15,6 @@ export default Ember.Route.extend({
 
   actions: {
     logout: function() {
-      this.get('authentication').set('authenticatedUser', null);
-
       var self = this;
       Ember.$.get('/api/logout')
        .done(function(){

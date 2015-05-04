@@ -3,9 +3,6 @@ import Ember from 'ember';
 var PostsController = Ember.ArrayController.extend({
 	sortProperties: ['createdDate'],
 	sortAscending: false,
-
-	authentication: Ember.inject.service('authentication'),
-
 	postContent: '',
 	postSize : function() {
 		var length = this.get('postContent').length;
