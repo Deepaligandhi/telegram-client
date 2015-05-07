@@ -24,7 +24,7 @@ var HomeLoginController = Ember.Controller.extend({
 				id: username,
 				name: name,
 				meta: {
-					password: md5(password + username),
+					password: md5(password),
 					operation: 'login'
 				}
 			});

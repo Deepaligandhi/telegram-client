@@ -31,12 +31,16 @@ var HomeSignupController = Ember.Controller.extend({
 				name: name,
 				email: email,
 				meta: {
-					password: md5(password + username),
+					password: md5(password),
 					operation: 'signup'
 				}
 			});
 			newUser.save().then(function(user) {
 				controller.set('session.user', user);
+				controller.set('username', '');
+				controller.set('password', '');
+				controller.set('email', '');
+				controller.set('name', '');
 				controller.transitionToRoute('posts');
 			}, function(response) {
 				console.log(response.statusCode); // 404

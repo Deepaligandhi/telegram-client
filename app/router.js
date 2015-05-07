@@ -10,6 +10,7 @@ Router.map(function() {
 	this.route('login', {path: '/'});
     this.route('signup', {path: '/signup'});
     this.route('reset', {path: '/reset'});
+    this.route('success', {path: '/success'});
   });
   this.route('posts', {path:'/posts'});
   this.resource('profile', {path: '/profile/:user_id'}, function() {
