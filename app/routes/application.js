@@ -16,13 +16,18 @@ export default Ember.Route.extend({
   actions: {
     logout: function() {
       var self = this;
-      Ember.$.get('/api/logout')
-       .done(function(){
-         self.get('session').set('user', null);
-         self.store.unloadAll('post');
-         self.store.unloadAll('user');
-         self.transitionTo('home.login');
-        });
+      Ember.$.ajax({
+        type: "POST",
+        url: '/api/users',
+        data: {user : { meta: { operation: 'logout' } } },
+        success: function(){
+          self.get('session').set('user', null);
+          self.store.unloadAll('post');
+          self.store.unloadAll('user');
+          self.transitionTo('home.login');
+         },
+        dataType: 'json'
+      });
     },
   }
 });
