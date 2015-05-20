@@ -26,6 +26,10 @@ var HomeSignupController = Ember.Controller.extend({
 				return (this.set('error', 'Password cannot be blank! Please enter your password'));
 			}
 			var controller = this;
+			var checkUser = this.store.getById('user', username);
+			if (checkUser){
+				return (this.set('error', 'Username already registered'));
+			}
 			var newUser = this.store.createRecord( 'user', {
 				id: username,
 				name: name,

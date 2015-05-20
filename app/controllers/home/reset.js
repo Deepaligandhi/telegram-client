@@ -17,6 +17,7 @@ var HomeResetController = Ember.Controller.extend({
         }
       });
       newUser.save().then(function(user) {
+        controller.set('email', '');
         console.log("Email sent to user: ", user);
         controller.transitionToRoute('home.success');
       }, function(response) {

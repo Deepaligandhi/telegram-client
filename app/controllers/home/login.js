@@ -38,8 +38,10 @@ var HomeLoginController = Ember.Controller.extend({
 				console.log(response.statusCode); // 404
 				console.log(response.responseText); // 'Error message as string'
 				var errText = response.responseText;
+				controller.store.unloadAll('user');
 				return (controller.set('error', errText));
 			});
+
 		},
 	}
 });

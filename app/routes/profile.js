@@ -10,7 +10,8 @@ var ProfileRoute = Ember.Route.extend({
 				}
 			});
 			user.save().then(
-				function() {
+				function(user) {
+					console.log("Followed User:", user);
 				}, function(response) {
 					console.log(response.statusCode); // 404
 					console.log(response.responseText); // 'Error message as string'
@@ -25,8 +26,10 @@ var ProfileRoute = Ember.Route.extend({
 					}
 				});
 				user.save().then(
-					function() {
+					function(user) {
+						console.log("Unfollowed User:", user);
 					}, function(response) {
+						console.log(response);
 						console.log(response.statusCode); // 404
 						console.log(response.responseText); // 'Error message as string'
 					});
