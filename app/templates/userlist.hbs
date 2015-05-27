@@ -1,0 +1,8 @@
+<div class=modal>
+<div class="users-list">
+  {{#each user in controller}}
+    {{user-block user=user follow='follow' unfollow='unfollow'}}
+  {{/each}}
+</div>
+<span {{action 'closeModal'}}>[close]</span>
+</div>

@@ -1,3 +1,5 @@
+/* global md5 */
+
 import Ember from 'ember';
 import {
   module,
@@ -5,7 +7,7 @@ import {
 } from 'qunit';
 import startApp from 'telegram-client/tests/helpers/start-app';
 import Pretender from 'pretender';
-import md5 from 'md5';
+
 
 var application;
 

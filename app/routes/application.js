@@ -19,15 +19,32 @@ export default Ember.Route.extend({
       Ember.$.ajax({
         type: "POST",
         url: '/api/users',
-        data: {user : { meta: { operation: 'logout' } } },
+        data: {user: { meta: { operation: "logout" } } },
+        dataType: 'json',
         success: function(){
           self.get('session').set('user', null);
           self.store.unloadAll('post');
           self.store.unloadAll('user');
           self.transitionTo('home.login');
-         },
-        dataType: 'json'
+         }
       });
     },
+
+    showModal: function(name, model) {
+      this.render(name, {
+        into: 'application',
+        outlet: 'modal',
+        model: model
+     });
+     console.log(model);
+   },
+
+   removeModal: function() {
+     this.disconnectOutlet({
+       outlet: 'modal',
+       parentView: 'application'
+     });
+   }
+
   }
 });
