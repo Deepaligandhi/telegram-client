@@ -1,8 +1,18 @@
-<div class=modal>
-<div class="users-list">
-  {{#each user in controller}}
-    {{user-block user=user follow='follow' unfollow='unfollow'}}
-  {{/each}}
-</div>
-<span {{action 'closeModal'}}>[close]</span>
+<div class="modal-fog">
+ <div class="modal-frame">
+   <div class="modal-body">
+     <span {{action 'closeModal'}}>[close]</span>
+     <div class="modal-title">
+       <h2>Find people</h2>
+       <br>
+     </div>
+     <div class="users-list">
+       {{#each user in model}}
+       {{#unless user.followedByCurrentUser}}
+         {{user-block user=user follow='follow' unfollow='unfollow'}}
+       {{/unless}}
+       {{/each}}
+     </div>
+   </div>
+  </div>
 </div>

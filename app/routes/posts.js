@@ -9,11 +9,11 @@ var PostsRoute = Ember.Route.extend({
 	},
 	model: function() {
 		return this.store.find("post", {dashboard: true});
-	}
-//	setupController: function(controller, model) {
-//		this._super(controller, model);
-		//controller.set('users', this.store.find('user'));
-//	}
+	},
+	setupController: function(controller, model) {
+   this._super(controller, model);
+   controller.set('users', this.store.find('user'));
+  }
 });
 
 export default PostsRoute;

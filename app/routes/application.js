@@ -30,21 +30,53 @@ export default Ember.Route.extend({
       });
     },
 
-    showModal: function(name, model) {
+    openModal: function(name, model) {
       this.render(name, {
         into: 'application',
         outlet: 'modal',
         model: model
      });
-     console.log(model);
    },
 
-   removeModal: function() {
+   closeModal: function() {
      this.disconnectOutlet({
        outlet: 'modal',
        parentView: 'application'
      });
-   }
+   },
+   
+   follow: function(user) {
+     user.setProperties( {
+       followedByCurrentUser: true,
+       meta: {
+         operation: 'followUser'
+       }
+     });
+     user.save().then(
+       function(user) {
+         console.log("Followed User:", user);
+       }, function(response) {
+         console.log(response.statusCode); // 404
+         console.log(response.responseText); // 'Error message as string'
+       });
+     },
+
+     unfollow: function(user) {
+       user.setProperties( {
+         followedByCurrentUser: false,
+         meta: {
+           operation: 'unfollowUser'
+         }
+       });
+       user.save().then(
+         function(user) {
+           console.log("Unfollowed User:", user);
+         }, function(response) {
+           console.log(response);
+           console.log(response.statusCode); // 404
+           console.log(response.responseText); // 'Error message as string'
+         });
+       }
 
   }
 });

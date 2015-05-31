@@ -8,8 +8,10 @@ export default Ember.Component.extend({
   		this.sendAction('logout');
   	},
     openModal: function(modalName, model) {
-      console.log(modalName, model);
       this.sendAction('openModal', modalName, model);
+    },
+    closeModal: function() {
+      this.sendAction('closeModal');
     }
   },
 });

@@ -7,7 +7,7 @@
     {{/if}}
   </a>
   <div class="name">
-    {{#link-to 'profile.posts' user classNames='link'}}{{user.name}}{{/link-to}}
+    {{#link-to 'profile.posts' user classNames='link' action='closeModal'}}{{user.name}}{{/link-to}}
   </div>
   {{#if user.followedByCurrentUser}}
   <button {{action "unfollow"}} class="blue-btn follow relative-center-y">

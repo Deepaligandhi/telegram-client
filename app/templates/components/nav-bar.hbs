@@ -3,12 +3,12 @@
     <div class="homepage relative-center-y">
       <img class="icon" src="images/icon-home.png"/>
       <a class="title dark-gray-link">{{#link-to "posts"}}Home{{/link-to}}</a>
+      <button {{action 'openModal' 'userlist' users}}>Find People</button>
     </div>
   </div>
 
   <div class="third">
     {{#link-to "posts"}}<img class="logo relative-center-xy" src="images/telegram-logo-small.png"/>{{/link-to}}
-    <button>{{action 'openModal' 'userlist' users}}>Open modal</button>
   </div>
 
   <div class="third">
